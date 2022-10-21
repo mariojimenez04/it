@@ -39,6 +39,7 @@
             <th scope="col">Cantidad</th>
             <th scope="col">Condicion</th>
             <th scope="col">Status</th>
+            <th scope="col">Pallet</th>
             <th scope="col">Modificado Por</th>
             <th scope="col">Ultima modificacion</th>
             <th scope="col">Acciones</th>
@@ -63,6 +64,7 @@
                     <td>{{ $detalle->cantidad }}</td>
                     <td>{{ $detalle->condicion }}</td>
                     <td>{{ $detalle->entregado }}</td>
+                    <td>{{ $detalle->pallet }}</td>
                     <td>{{ $detalle->modificado_por }}</td>
                     <td>{{ $detalle->updated_at }}</td>
                     @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1)

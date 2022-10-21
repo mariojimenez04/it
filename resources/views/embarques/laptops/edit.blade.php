@@ -143,6 +143,16 @@
             @enderror
         </div>
 
+        <div class="col-md-4">
+
+            <label for="pallet" class="form-label">Pallet</label>
+            <input type="text" id="pallet" name="pallet" class="form-control form-control-sm @error('pallet') is-invalid @enderror" value="{{ $laptop->pallet }}">
+
+            @error('pallet')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+        </div>
+
     </div>
 
     <input type="submit" value="Actualizar registro" class="btn btn-dark mt-3">

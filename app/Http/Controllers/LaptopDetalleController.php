@@ -168,8 +168,9 @@ class LaptopDetalleController extends Controller
         $laptop->capacidad = $request->capacidad;
         $laptop->ram = $request->ram;
         $laptop->cantidad = $request->cantidad;
-        $laptop->status = $request->status;
+        $laptop->condicion = $request->condicion;
         $laptop->observaciones = $request->observaciones;
+        $laptop->pallet = $request->pallet;
         $laptop->save();
 
         return redirect('/laptop/index/' . $serie)->with('success', 'Registro actualizado existosamente');
