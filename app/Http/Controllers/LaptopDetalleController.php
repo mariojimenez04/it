@@ -24,7 +24,19 @@ class LaptopDetalleController extends Controller
 
     public function venta(Request $request, $id){
 
-        dd('venta de', $id);
+        $registro = Laptop_detalle::where('id_detalle', $id)->first();
+
+        $id_titulo = $registro->id_titulo;
+
+        $this->validate($request, [
+            'cliente' => 'required'
+        ]);
+
+        $registro->vendido_a = $request->cliente;
+        $registro->entregado = 1;
+        $registro->save();
+
+        return redirect('/laptop/index/' . $id_titulo)->with('success', 'Registro actualizado existosamente');
     }
 
     public function importExcel(Request $request, $id){

@@ -151,6 +151,9 @@ Route::get('/laptop/export/excel/{laptop_detalles:id_titulo}', [LaptopDetalleCon
 Route::get('/laptop/import/{laptop_detalles:id_titulo}', [LaptopDetalleController::class, 'import'])->name('laptop.import');
 Route::post('/laptop/import/{laptop_detalles:id_titulo}', [LaptopDetalleController::class, 'importExcel'])->name('laptop.import.excel');
 
+//Ruta para editar los clientes
+Route::post('/laptop/confirm/client/{cliente}', [LaptopDetalleController::class, 'venta'])->name('laptop.venta');
+
 /* NUMEROS DE SERIE DE LAPTOPS */
 //Ruta para el index
 Route::get('/serie/index/{laptop_detalles:id_titulo}', [SerieController::class, 'index'])->name('serie.index');

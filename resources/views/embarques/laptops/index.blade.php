@@ -74,28 +74,31 @@
                         <div class="modal fade" id="modal-{{ $detalle->id_detalle }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
-                                        <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
+                                    <form action="{{ route('laptop.venta', $detalle->id_detalle) }}" method="POST">
+
+                                        <div class="modal-header">
+                                            <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
+                                            <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <label for="cliente">Cliente</label>
                                                     <select name="cliente" id="cliente" class="form-select">
                                                         <option>--Seleccionar--</option>
-                                                        <option value="1">Rafa</option>
-                                                        <option value="2">Roldan</option>
+                                                        <option value="Rafa">Rafa</option>
+                                                        <option value="Rafa">Roldan</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <input type="submit" value="Guardar cambios" class="btn btn-success">
-                                    </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <input type="submit" value="Guardar cambios" class="btn btn-success">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
