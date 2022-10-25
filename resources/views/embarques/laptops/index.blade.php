@@ -40,9 +40,11 @@
             <th scope="col">Condicion</th>
             <th scope="col">Status</th>
             <th scope="col">Pallet</th>
-            <th scope="col">Modificado Por</th>
-            <th scope="col">Ultima modificacion</th>
-            <th scope="col">Acciones</th>
+            @if(auth()->user()->admin === 1)
+                <th scope="col">Modificado Por</th>
+                <th scope="col">Ultima modificacion</th>
+                <th scope="col">Acciones</th>
+            @endif
         </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -63,11 +65,45 @@
                     <td>{{ $detalle->ram }}</td>
                     <td>{{ $detalle->cantidad }}</td>
                     <td>{{ $detalle->condicion }}</td>
-                    <td>{{ $detalle->entregado }}</td>
+                    <td>
+                        @if ($detalle->entregado === 0)
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-{{ $detalle->id_detalle }}">No entregado</button>
+                        @else
+                            <button class="btn btn-success" disabled>Entregado</button>
+                        @endif
+                        <div class="modal fade" id="modal-{{ $detalle->id_detalle }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
+                                        <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="cliente">Cliente</label>
+                                                    <select name="cliente" id="cliente" class="form-select">
+                                                        <option>--Seleccionar--</option>
+                                                        <option value="1">Rafa</option>
+                                                        <option value="2">Roldan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <input type="submit" value="Guardar cambios" class="btn btn-success">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td>{{ $detalle->pallet }}</td>
+                    @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                     <td>{{ $detalle->modificado_por }}</td>
                     <td>{{ $detalle->updated_at }}</td>
-                    @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                     <form action="{{ route('laptop.destroy', $detalle->numero_serie) }}" method="POST">
                         @csrf
                         @method('delete')

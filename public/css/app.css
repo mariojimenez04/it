@@ -472,7 +472,7 @@ a{
 
 .login-contenido {
   background-color: #ffffff;
-  padding: 2em 3em;
+  padding: 3rem 4rem;
   width: auto;
   height: auto;
   box-shadow: 2px 2px 38px -21px #2b2d42;
@@ -507,8 +507,8 @@ a{
   position: relative;
 }
 .login-contenido i {
-  width: 8%;
-  margin-top: 15px;
+  width: 7%;
+  margin-top: 18px;
   text-align: center;
   fill: #808080;
   stroke: #818181;
@@ -516,12 +516,9 @@ a{
   position: absolute;
 }
 .login-contenido input:not([type=checkbox]) {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-weight: 600;
-  text-align: left;
   padding: 13px 11px 8px 36px;
-  width: 100%;
-  display: inline-block;
   box-sizing: border-box;
   border: transparent;
   outline: none;

@@ -24,10 +24,7 @@
                 <td>{{ $embarque->descripcion }}</td>
                 <td>{{ $embarque->modificado_por }}</td>
                 <td>
-                    <form action="">
-                        <input type="submit" value="Eliminar" class="btn btn-danger">
-                        <a href="" class="btn btn-warning">Ver Embarque</a>
-                    </form>
+                    <a href="{{ route('laptop.index', $embarque->id_emb) }}" class="btn btn-warning">Ver Embarque</a>
                 </td>
             </tr>
         @endforeach

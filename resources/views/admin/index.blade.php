@@ -2,14 +2,13 @@
 
 @section('botones')
     <a href="{{ route('index') }}" class="btn btn-dark">Volver</a>
-    <a href="{{ route('ram.index') }}" class="btn btn-dark">Ver lista de memoria Ram</a>
     @if (auth()->user()->admin === 1)
 
         <a href="{{ route('users.index') }}" class="btn btn-primary">Ver usuarios</a>
         
     @endif
+    <a href="{{ route('ram.index') }}" class="btn btn-dark">Ver lista de memoria Ram</a>
     <a href="{{ route('processor.index') }}" class="btn btn-dark">Ver procesadores</a>
-
 @endsection
 
 @section('titulo')
@@ -23,20 +22,18 @@
     <table class="table table-hover">
         <thead>
         <tr>
-
             <th scope="col">#</th>
             <th scope="col">Capacidad</th>
-            <th scope="col">Registrado por</th>
-            
+            <th scope="col">Registrado por</th>    
         </tr>
         </thead>
         <tbody class="table-group-divider">
     
             @foreach ($rams as $ram)
                 <tr>
-                    <th>{{ $ram->id }}</th>
-                    <th scope="row">{{ $ram->ram }}</th>
-                    <th scope="row">{{ $ram->registrado_por }}</th>
+                    <td>{{ $ram->id }}</td>
+                    <td scope="row">{{ $ram->ram }}</td>
+                    <td scope="row">{{ $ram->registrado_por }}</td>
                 </tr>
             @endforeach
         
@@ -128,7 +125,7 @@
 <div class="linea"></div>
 
 <div class="table-responsive">
-    <h3 class="text-center my-5">Lista de memoria(tamaño)</h3>
+    <h3 class="text-center my-5">Lista de memoria(capacidad)</h3>
     <table class="table table-hover">
         <thead>
         <tr>
