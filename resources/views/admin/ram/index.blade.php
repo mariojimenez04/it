@@ -42,13 +42,17 @@
                     <td>{{ $ram->registrado_por }}</td>
                     <td>{{ $ram->created_at }}</td>
                     <td>{{ $ram->updated_at }}</td>
-                    <td>
-                        <form action="{{ route('ram.destroy', $ram->ram) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Eliminar" class="btn btn-danger">
-                        </form>
-                    </td>
+
+                    @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 )
+                        <td>
+                            <form action="{{ route('ram.destroy', $ram->ram) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar" class="btn btn-danger">
+                            </form>
+                        </td> 
+                    @endif
+
                 </tr>
             @endforeach
         

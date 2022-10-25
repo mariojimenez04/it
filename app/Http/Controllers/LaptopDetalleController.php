@@ -22,6 +22,11 @@ class LaptopDetalleController extends Controller
         ]);
     }
 
+    public function venta(Request $request, $id){
+
+        dd('venta de', $id);
+    }
+
     public function importExcel(Request $request, $id){
         $archivo = $request->file('laptop_import');
 
@@ -61,7 +66,6 @@ class LaptopDetalleController extends Controller
         return view('embarques.laptops.create',[
             'id_embarque' => $id_embarque,
         ]);
-
     }
 
     /**
