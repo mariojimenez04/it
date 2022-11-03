@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('botones')
-    <a href="{{ route('embarque.index') }}" class="btn btn-dark">Volver</a>
+    <a href="{{ route('index') }}" class="btn btn-dark">Volver</a>
 @endsection 
 
 @section('titulo')
-    Embarque - Registrar nuevo embarque
+    Registrar nuevo embarque
 @endsection
 
 @section('contenido')
@@ -33,10 +33,15 @@
             @enderror
         </div>
 
-        <div class="col-sm-5">
+        <div class="col-md-4">
 
-            <label for="descripcion" class="form-label">Descripcion</label>
-            <input type="text" id="descripcion" name="descripcion" class="form-control form-control-sm @error('descripcion') is-invalid @enderror" value="{{ old('descripcion') }}">
+            <label for="descripcion" class="form-label">Tipo</label>
+            <select name="descripcion" id="descripcion" class="form-select">
+                <option selected value="">---- Seleccionar ----</option>
+                @foreach ($tipos as $tipo)
+                    <option value="{{ $tipo->tipo }}">{{ $tipo->tipo }}</option>
+                @endforeach
+            </select>
 
             @error('descripcion')
                 <p class="invalid-feedback">{{ $message }}</p>

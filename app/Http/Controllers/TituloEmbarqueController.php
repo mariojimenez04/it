@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Embarque;
 use App\Models\Titulo_embarque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class TituloEmbarqueController extends Controller
      */
     public function index()
     {
-        $embarques = Titulo_embarque::all();
+        $embarques = Titulo_embarque::where('descripcion', 'Laptops')->get();
 
         //Retornar la vista de los embarques
         return view('embarques.index',[
@@ -34,10 +35,13 @@ class TituloEmbarqueController extends Controller
      */
     public function create()
     {
+        $tipos = Embarque::all();
+
         $id_emb = 'EMB-' . rand();
         //Retornar la vista para crear embarques
         return view('embarques.create', [
             'id_emb' => $id_emb,
+            'tipos' => $tipos
         ]);
     }
 
@@ -63,7 +67,14 @@ class TituloEmbarqueController extends Controller
             'id_emb' => $request->id_emb
         ]);
 
-        return redirect()->route('embarque.index')->with('success', 'Registro creado exitosamente');
+        if ($request->descripcion === 'Laptop') {
+            # code...
+            return redirect()->route('embarque.index')->with('success', 'Registro creado exitosamente');
+        }else if($request->descripcion === 'Productos'){
+            return redirect()->route('embarque.productos.index')->with('success', 'Registro creado exitosamente');
+        }else {
+            return abort(400);
+        }
     }
 
     /**
@@ -116,7 +127,11 @@ class TituloEmbarqueController extends Controller
         $embarque->descripcion = $request->descripcion;
         $embarque->save();
 
-        return redirect()->route('embarque.index')->with('success', 'Registro actualizado exitosamente');
+        if ($request->descripcion === 'Laptop') {
+            return redirect()->route('embarque.index')->with('success', 'Registro creado exitosamente');
+        }else if($request->descripcion === 'Productos'){
+            return redirect()->route('embarque.productos.index')->with('success', 'Registro creado exitosamente');
+        }
     }
 
     /**

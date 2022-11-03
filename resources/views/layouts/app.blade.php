@@ -32,7 +32,7 @@
                             <a class="nav-link" href="{{ route('embarque.index') }}">Embarques(Laptops)</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/processors/index">Embarques(Productos)</a>
+                            <a class="nav-link" href="{{ route('embarque.productos.index') }}">Embarques(Productos)</a>
                         </li>
                             
                     </ul>

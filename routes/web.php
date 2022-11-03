@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\EmbarqueController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\LaptopDetalleController;
+use App\Http\Controllers\LineaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MemoriaController;
 use App\Http\Controllers\ProcesadoreController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RamController;
 use App\Http\Controllers\SerieController;
 use App\Http\Controllers\TituloEmbarqueController;
@@ -154,6 +157,9 @@ Route::post('/laptop/import/{laptop_detalles:id_titulo}', [LaptopDetalleControll
 //Ruta para editar los clientes
 Route::post('/laptop/confirm/client/{cliente}', [LaptopDetalleController::class, 'venta'])->name('laptop.venta');
 
+//Ruta para devolver
+Route::post('/laptop/return/{cliente}', [LaptopDetalleController::class, 'devolucion'])->name('laptop.devolucion');
+
 /* NUMEROS DE SERIE DE LAPTOPS */
 //Ruta para el index
 Route::get('/serie/index/{laptop_detalles:id_titulo}', [SerieController::class, 'index'])->name('serie.index');
@@ -161,3 +167,44 @@ Route::get('/serie/index/{laptop_detalles:id_titulo}', [SerieController::class, 
 //Ruta para generar la importacion
 Route::get('/serie/create/{laptop_detalles:id_titulo}', [SerieController::class, 'create'])->name('serie.create');
 Route::post('/serie/create/{laptop_detalles:id_titulo}', [SerieController::class, 'store'])->name('serie.store');
+
+/* RUTAS PARA LOS EMBARQUES DE LAPTOP Y PRODUCTOS */
+Route::get('/embarque/productos/index', [EmbarqueController::class, 'indexProductos'])->name('embarque.productos.index');
+
+/* EMBARQUES DE PRODUCTOS */
+//Ruta de productos
+//Index
+Route::get('/productos/index/{embarque_productos}', [ProductoController::class, 'index'])->name('productos.index');
+
+//Create
+Route::get('/productos/create/{embarque}', [ProductoController::class, 'create'])->name('productos.create');
+Route::post('/productos/create/{embarque}', [ProductoController::class, 'store'])->name('productos.store');
+
+//Edit
+Route::get('/productos/edit/{producto}', [ProductoController::class, 'edit'])->name('productos.edit');
+Route::post('/productos/edit/{producto}', [ProductoController::class, 'update'])->name('productos.update');
+
+//Productos a entregar
+Route::post('/productos/entrega/{producto}', [ProductoController::class, 'entrega'])->name('productos.entrega');
+
+//Delete
+Route::delete('/productos/delete/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+
+//Rutas de Lineas
+//Index
+Route::get('/linea/index', [LineaController::class, 'index'])->name('linea.index');
+
+//Create
+Route::get('/linea/create', [LineaController::class, 'create'])->name('linea.create');
+Route::post('/linea/create', [LineaController::class, 'store'])->name('linea.store');
+
+//Edit
+Route::get('/linea/edit', [LineaController::class, 'edit'])->name('linea.edit');
+Route::post('/linea/edit', [LineaController::class, 'update'])->name('linea.pdate');
+
+//Delete
+Route::post('/linea/delete', [LineaController::class, 'destroy'])->name('linea.destroy');
+
+//Rutas para los codigos
+//Index
+Route::get('/linea/index', [LineaController::class, 'index'])->name('linea.index');

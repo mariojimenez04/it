@@ -6,7 +6,7 @@
 @endsection
 
 @section('titulo')
-    Administracion - Embarques Laptops
+    Administracion - Embarques Productos
 @endsection
 
 @section('contenido')
@@ -18,13 +18,14 @@
 @endif
 
 <div class="table-responsive">
+
     <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Embarque</th>
             <th scope="col">Tipo</th>
-            @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 )
+            @if (auth()->user()->admin === 1)
                 <th scope="col">Modificado por</th>
             @endif
             <th scope="col">Acciones</th>
@@ -37,25 +38,25 @@
                     <th>{{ $embarque->id_emb }}</th>
                     <th scope="row">{{ $embarque->titulo }}</th>
                     <td>{{ $embarque->descripcion }}</td>
-                    @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 )
+                    @if (auth()->user()->admin === 1)
                         <td>{{ $embarque->modificado_por }}</td>
-                    @endif 
+                    @endif
                     <td class="d-flex gap-3">
-                    @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 )
+                        @if (auth()->user()->admin === 1)
                             <form action="{{ route('embarque.destroy', $embarque) }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <input type="submit" value="Eliminar" class="btn btn-danger">
                             </form>
                             <a href="{{ route('embarque.edit', $embarque) }}" class="btn btn-warning">Editar Embarque</a>
-                    @endif 
-                            <a href="{{ route('laptop.index', $embarque->id_emb) }}" class="btn btn-success">Ver embarque(detalles)</a>
-                        </td>
+                        @endif
+                            <a href="{{ route('productos.index', $embarque->id_emb) }}" class="btn btn-success">Ver embarque(detalles)</a>
+                    </td>
                 </tr>
             @endforeach
         
         </tbody>
     </table>
-</div>
 
+</div>
 @endsection

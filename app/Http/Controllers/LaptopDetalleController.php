@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Laptop_detalle;
 use App\Exports\LaptopDetalleExport;
 use App\Imports\LaptopImport;
+use App\Models\Cliente;
+use App\Models\Devolucion;
+use App\Models\DevolucionLaptop;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LaptopDetalleController extends Controller
@@ -39,6 +42,28 @@ class LaptopDetalleController extends Controller
         return redirect('/laptop/index/' . $id_titulo)->with('success', 'Registro actualizado existosamente');
     }
 
+    public function devolucion(Request $request, $id) {
+        $registro = Laptop_detalle::where('id', $id)->first();
+
+        $id_titulo = $registro->id_titulo;
+
+        $this->validate($request, [
+            'motivo' => 'required'
+        ]);
+
+        DevolucionLaptop::create([
+            'motivo' => $request->motivo,
+            'registrado_por' => auth()->user()->name,
+            'id_laptop' => $id
+        ]);
+
+        $registro->vendido_a = '';
+        $registro->entregado = 0;
+        $registro->save();
+
+        return redirect('/laptop/index/' . $id_titulo)->with('success', 'Registro actualizado existosamente');
+    }
+
     public function importExcel(Request $request, $id){
         $archivo = $request->file('laptop_import');
 
@@ -57,12 +82,18 @@ class LaptopDetalleController extends Controller
      */
     public function index($id)
     {
-        $detalle_laptops = Laptop_detalle::where('id_titulo', $id)->get();
+        $clientes = Cliente::all();
+        $vendido = Laptop_detalle::where('entregado', 1)->count();
+        $no_vendido = Laptop_detalle::where('entregado', 0)->count();
+        $detalle_laptops = Laptop_detalle::where('id_titulo', $id)->paginate(20);
 
         //Retornar la vista de el embarque
         return view('embarques.laptops.index', [
             'id' => $id,
             'detalle_laptops' => $detalle_laptops,
+            'vendido' => $vendido,
+            'no_vendido' => $no_vendido,
+            'clientes' => $clientes
         ]);
     }
 
@@ -90,7 +121,7 @@ class LaptopDetalleController extends Controller
     {
         //Realizar la validacion
         $this->validate($request,[
-            'id_detalle' => 'required',
+            'id_detalle' => 'required|unique:lapop_detalles,id_detalle',
             'modelo' => 'required',
             'numero_serie' => 'required|alpha_num|unique:laptop_detalles,numero_serie',
             'procesador' => 'required',
@@ -102,7 +133,7 @@ class LaptopDetalleController extends Controller
         ]);
 
         Laptop_detalle::create([
-            'id_detalle' => $request->id_detalle ?? 'xxxxx',
+            'id_detalle' => $request->id_detalle,
             'modelo' => $request->modelo ?? 'xxxxx',
             'numero_serie' => $request->numero_serie ?? 'xxxxx',
             'diagnostico' => $request->diagnostico ?? 'xxxxx',
