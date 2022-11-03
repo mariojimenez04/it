@@ -22,11 +22,7 @@ class ProductoController extends Controller
     {
         $clientes = Cliente::all();
         $productos = Producto::where('id_titulo', $id)->get();
-        $titulo = Producto::where('id_titulo', $id)->first();
-        
-        if(!$titulo){
-            abort(404);
-        }
+        $titulo = $id;
 
         return view('embarques.productos.index',[
             'productos' => $productos,

@@ -2,11 +2,11 @@
 
 @section('botones')
     <a href="{{ route('embarque.productos.index') }}" class="btn btn-dark">Volver</a>
-    <a href="{{ route('productos.create', $titulo->id_titulo) }}" class="btn btn-dark">Registrar Productos</a>
+    <a href="{{ route('productos.create', $titulo) }}" class="btn btn-dark">Registrar Productos</a>
 @endsection
 
 @section('titulo')
-    Administracion - Embarque - {{ $titulo->id_titulo }}
+    Administracion - Embarque - {{ $titulo }}
 @endsection
 
 @section('contenido')
