@@ -85,7 +85,7 @@ class LaptopDetalleController extends Controller
         $clientes = Cliente::all();
         $vendido = Laptop_detalle::where('entregado', 1)->count();
         $no_vendido = Laptop_detalle::where('entregado', 0)->count();
-        $detalle_laptops = Laptop_detalle::where('id_titulo', $id)->paginate(20);
+        $detalle_laptops = Laptop_detalle::where('id_titulo', $id)->get();
 
         //Retornar la vista de el embarque
         return view('embarques.laptops.index', [
