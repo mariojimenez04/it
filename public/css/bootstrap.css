@@ -7342,6 +7342,11 @@ textarea.form-control-lg {
   --bs-border-opacity: 1;
 }
 
+.w-5{
+  width: 1.5rem !important;
+}
+
+
 .w-25 {
   width: 25% !important;
 }
@@ -10911,4 +10916,15 @@ textarea.form-control-lg {
   }
 }
 
+a{
+  text-decoration: none !important;
+}
+
+ul{
+  list-style: none !important;
+}
+
+li{
+  list-style: none !important;
+}
 /*# sourceMappingURL=bootstrap.css.map */

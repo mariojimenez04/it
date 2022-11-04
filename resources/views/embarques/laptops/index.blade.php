@@ -174,6 +174,11 @@
         
         </tbody>
     </table>
+    <div class="text-center mt-5 mb-5">
+        <div>
+            {{ $detalle_laptops->links() }}
+        </div>
+    </div>
 </div>
 
 @endsection
