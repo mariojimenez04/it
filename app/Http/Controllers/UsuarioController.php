@@ -71,7 +71,8 @@ class UsuarioController extends Controller
             'password' => Hash::make($request->password),
             'admin' => '0',
             'supervisor' => '0',
-            'usuario' => '1',
+            'usuario' => '0',
+            'lectura' => '1',
             'registrado_por' => auth()->user()->name
         ]);
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Isla;
+use App\Models\Linea;
 use App\Models\Producto;
 use App\Models\Titulo_embarque;
 use Illuminate\Http\Request;
@@ -38,10 +40,15 @@ class ProductoController extends Controller
      */
     public function create($id)
     {
-        $id_titulo = Producto::where('id_titulo', $id)->first();
+        $id_titulo = Titulo_embarque::where('id_emb', $id)->first();
+        $lineas = Linea::all();
+        $islas = Isla::all();
         //Retornar la vista para registrar productos
         return view('embarques.productos.create',[
-            'id_titulo' => $id_titulo
+            'id_titulo' => $id_titulo,
+            'lineas' => $lineas,
+            'islas' => $islas,
+        
         ]);
     }
 

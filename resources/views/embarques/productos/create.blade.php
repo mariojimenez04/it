@@ -1,22 +1,29 @@
 @extends('layouts.app')
 
 @section('botones')
-    <a href="{{ route('productos.index', $id_titulo->id_titulo)}}" class="btn btn-dark">Volver</a>
+    <a href="{{ route('productos.index', $id_titulo->id_emb)}}" class="btn btn-dark">Volver</a>
 @endsection
 
 @section('titulo')
-    Registrar Producto - Embarque - {{ $id_titulo->id_titulo }}
+    Registrar Producto - Embarque - {{ $id_titulo->id_emb }}
 @endsection
 
 @section('contenido')
-<form id="formulario" class="container" action="{{ route('productos.store', $id_titulo->id_titulo) }}" method="POST">
+<form id="formulario" class="container" action="{{ route('productos.store', $id_titulo->id_emb) }}" method="POST">
     @csrf
     <div class="row row-cols-2 gap-5">
 
         <div class="col-sm-4">
 
             <label for="linea" class="form-label">Linea</label>
-            <input type="text" id="linea" name="linea" class="form-control form-control-sm @error('linea') is-invalid @enderror" value="{{ old('linea') }}">
+            <select name="linea" id="linea" class="form-select">
+                <option value="" selected>--Seleccionar--</option>
+
+                @foreach ($lineas as $linea)
+                    <option value="{{ $linea->linea }}">{{ $linea->linea }}</option>
+                @endforeach
+
+            </select>
 
             @error('linea')
                 <p class="invalid-feedback">{{ $message }}</p>

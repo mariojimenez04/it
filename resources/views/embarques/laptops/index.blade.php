@@ -2,7 +2,11 @@
 
 @section('botones')
     <a href="{{ route('embarque.index') }}" class="btn btn-dark">Volver</a>
-    <a href="{{ route('laptop.create', $id) }}" class="btn btn-dark">Registrar laptop</a>
+    @if ( auth()->user()->usuario === 1)
+        
+        <a href="{{ route('laptop.create', $id) }}" class="btn btn-dark">Registrar laptop</a>
+
+    @endif
     @if(auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
         <a href="{{ route('laptop.import', $id) }}" class="btn btn-primary">Importar archivo Excel Laptops</a>
         <a href="{{ route('serie.create', $id) }}" class="btn btn-dark">Importar Excel No. series</a>
@@ -17,10 +21,14 @@
 
 @section('contenido')
 
+@if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 || auth()->user()->usuario === 1)
+
 <div class="d-flex gap-3">
     <p>Laptops por entregar: <strong>{{ $no_vendido }}</strong></p>
     <p>Laptops entregadas: <strong>{{ $vendido }}</strong></p>
 </div>
+    
+@endif
 
 @if ( session('success'))
     <div class="alert alert-success">
