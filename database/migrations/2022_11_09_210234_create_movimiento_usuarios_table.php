@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('registro_numero_series', function (Blueprint $table) {
+        Schema::create('movimiento_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_serie')->nullable();
-            $table->string('modificado_por')->nullable();
+            $table->string('movimiento')->nullable();
+            $table->string('usuario')->nullable();
+            $table->string('equipo')->nullable();
+            $table->string('direccion_ip')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registro_numero_series');
+        Schema::dropIfExists('movimiento_usuarios');
     }
 };

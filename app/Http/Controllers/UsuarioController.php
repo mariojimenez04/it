@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MovimientoUsuario;
 use App\Models\User;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
@@ -76,6 +77,13 @@ class UsuarioController extends Controller
             'registrado_por' => auth()->user()->name
         ]);
 
+        MovimientoUsuario::create([
+            'movimiento' => 'Se ha creado el usuario ' . $request->nombre . ' con el correo ' . $request->email . ' en fecha de ' . date('d-M-Y H:i:s'),
+            'usuario' => auth()->user()->name,
+            'equipo' => gethostname(),
+            'direccion_ip' => $request->ip()
+        ]);
+
         // //Otra forma de autenticar
         // auth()->attempt([
         //     'email' => $request->email,
@@ -134,6 +142,13 @@ class UsuarioController extends Controller
             'password' => 'required|confirmed|min:5',
             'nombre' => 'required'
         ]);
+
+        MovimientoUsuario::create([
+            'movimiento' => 'Se ha actualizado el usuario ' . $usuario->name . ' con el correo ' . $usuario->email . ' en fecha de ' . date('d-M-Y H:i:s'),
+            'usuario' => auth()->user()->name,
+            'equipo' => gethostname(),
+            'direccion_ip' => $request->id()
+        ]);
      
         $usuario->password = Hash::make($request->input('password'));
         $usuario->name = $request->input('nombre');
@@ -151,6 +166,13 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         $usuario = User::where('name', $id);
+
+        MovimientoUsuario::create([
+            'movimiento' => 'Se ha eliminado el usuario ' . $usuario->name . ' con el correo ' . $usuario->email . ' en fecha de ' . date('d-M-Y H:i:s'),
+            'usuario' => auth()->user()->name,
+            'equipo' => gethostname(),
+            'direccion_ip' => $_SERVER['REMOTE_ADDR']
+        ]);
 
         //Eliminar el usuario
         $usuario->delete($id);

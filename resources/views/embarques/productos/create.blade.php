@@ -9,7 +9,7 @@
 @endsection
 
 @section('contenido')
-<form id="formulario" class="container" action="{{ route('productos.store', $id_titulo->id_emb) }}" method="POST">
+<form class="container" action="{{ route('productos.store', $id_titulo->id_emb) }}" method="POST">
     @csrf
     <div class="row row-cols-2 gap-5">
 

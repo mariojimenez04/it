@@ -61,15 +61,15 @@ class ProductoController extends Controller
     public function store(Request $request, $id)
     {
         //Validar la informacion
-        $this->validate($request,[
-            'linea' => 'required',
-            'isla' => 'required',
-            'producto' => 'required',
-            'marca' => 'required',
-            'modelo' => 'required',
-            'color' => 'required',
-            'cantidad' => 'required',
-        ]);
+        // $this->validate($request,[
+        //     'linea' => 'required',
+        //     'isla' => 'required',
+        //     'producto' => 'required',
+        //     'marca' => 'required',
+        //     'modelo' => 'required',
+        //     'color' => 'required',
+        //     'cantidad' => 'required',
+        // ]);
 
         Producto::create([
             'linea' => $request->linea ?? 'XXX',
