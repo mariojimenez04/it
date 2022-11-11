@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('movimiento_productos', function (Blueprint $table) {
             $table->id();
-            $table->string('movimiento')->nullable();
+            $table->longText('movimiento')->nullable();
             $table->string('usuario')->nullable();
             $table->string('equipo')->nullable();
             $table->string('direccion_ip')->nullable();

@@ -121,7 +121,7 @@ class LaptopDetalleController extends Controller
     {
         //Realizar la validacion
         $this->validate($request,[
-            'id_detalle' => 'required|unique:lapop_detalles,id_detalle',
+            'id_detalle' => 'required',
             'modelo' => 'required',
             'numero_serie' => 'required|alpha_num|unique:laptop_detalles,numero_serie',
             'procesador' => 'required',
@@ -144,7 +144,7 @@ class LaptopDetalleController extends Controller
             'capacidad' => $request->capacidad ?? 'xxxxx',
             'ram' => $request->ram ?? 'xxxxx',
             'cantidad' => 1 ?? 'xxxxx',
-            'status' => $request->status ?? 'xxxxx',
+            'condicion' => $request->status ?? 'xxxxx',
             'observaciones' => $request->observaciones ?? 'xxxxx',
             'entregado' => 0 ?? 'xxxxx',
             'modificado_por' => auth()->user()->name ?? 'xxxxx',
