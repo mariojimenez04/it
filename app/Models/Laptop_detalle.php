@@ -21,7 +21,7 @@ class Laptop_detalle extends Model
         'capacidad',
         'ram',
         'cantidad',
-        'status',
+        'condicion',
         'observaciones',
         'entregado',
         'modificado_por',
