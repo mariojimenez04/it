@@ -33,12 +33,12 @@
                 @if (auth()->user()->admin === 1)
                     <td class="d-flex gap-3">
 
-                        <form action="{{ route('users.destroy', $usuario) }}" method="POST">
+                        <form action="{{ route('users.destroy', $usuario->email) }}" method="POST">
                             @csrf
                             @method('delete')
                             <input type="submit" value="Eliminar" class="btn btn-danger">
                         </form>
-                        <a href="{{ route('users.edit', $usuario) }}" class="btn btn-warning">                                                     
+                        <a href="{{ route('users.edit', $usuario->name) }}" class="btn btn-warning">                                                   
                             Editar usuario
                         </a>
                         

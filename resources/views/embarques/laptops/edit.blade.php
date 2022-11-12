@@ -125,10 +125,10 @@
 
         <div class="col-md-4">
 
-            <label for="status" class="form-label">Status</label>
-            <input type="text" id="status" name="status" class="form-control form-control-sm @error('status') is-invalid @enderror" value="{{ $laptop->status }}">
+            <label for="condicion" class="form-label">Condicion</label>
+            <input type="text" id="condicion" name="condicion" class="form-control form-control-sm @error('condicion') is-invalid @enderror" value="{{ $laptop->condicion }}">
 
-            @error('status')
+            @error('condicion')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>

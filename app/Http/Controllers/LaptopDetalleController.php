@@ -73,27 +73,32 @@ class LaptopDetalleController extends Controller
     }
 
     public function exportExcel($id) {
-        return Excel::download(new LaptopDetalleExport($id), 'libros-excel.xlsx');
+        return Excel::download(new LaptopDetalleExport($id), $id . '-libros-excel.xlsx');
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index($id)
     {
         $clientes = Cliente::all();
-        $vendido = Laptop_detalle::where('entregado', 1)->count();
-        $no_vendido = Laptop_detalle::where('entregado', 0)->count();
-        $detalle_laptops = Laptop_detalle::where('id_titulo', $id)->get();
+        $vendido = Laptop_detalle::where('entregado', 1)->where('id_titulo', $id)->count();
+        $no_vendido = Laptop_detalle::where('entregado', 0)->where('id_titulo', $id)->count();
+        $laptop_general = Laptop_detalle::where('id_titulo', $id)->orderBy('id_detalle', 'asc')->get();
+        $laptop_entregadas = Laptop_detalle::where('id_titulo', $id)->where('entregado', 1)->orderBy('id_detalle', 'asc')->get();
+        $laptop_noEntregadas = Laptop_detalle::where('id_titulo', $id)->where('entregado', 0)->orderBy('id_detalle', 'asc')->get();
 
         //Retornar la vista de el embarque
         return view('embarques.laptops.index', [
             'id' => $id,
-            'detalle_laptops' => $detalle_laptops,
+            'laptop_general' => $laptop_general,
             'vendido' => $vendido,
             'no_vendido' => $no_vendido,
-            'clientes' => $clientes
+            'clientes' => $clientes,
+            'laptop_entregadas' => $laptop_entregadas,
+            'laptop_noEntregadas' => $laptop_noEntregadas,
         ]);
     }
 
@@ -206,18 +211,18 @@ class LaptopDetalleController extends Controller
             'cantidad' => 'required|numeric|between:1,1',
         ]);
 
-        $laptop->modelo = $request->modelo;
-        $laptop->diagnostico = $request->diagnostico;
-        $laptop->acciones = $request->acciones;
-        $laptop->procesador = $request->procesador;
-        $laptop->tamano = $request->tamano;
-        $laptop->color = $request->color;
-        $laptop->capacidad = $request->capacidad;
-        $laptop->ram = $request->ram;
-        $laptop->cantidad = $request->cantidad;
-        $laptop->condicion = $request->condicion;
-        $laptop->observaciones = $request->observaciones;
-        $laptop->pallet = $request->pallet;
+        $laptop->modelo = $request->modelo ?? 'XXXX';
+        $laptop->diagnostico = $request->diagnostico ?? 'XXXX';
+        $laptop->acciones = $request->acciones ?? 'XXXX';
+        $laptop->procesador = $request->procesador ?? 'XXXX';
+        $laptop->tamano = $request->tamano ?? 'XXXX';
+        $laptop->color = $request->color ?? 'XXXX';
+        $laptop->capacidad = $request->capacidad ?? 'XXXX';
+        $laptop->ram = $request->ram ?? 'XXXX';
+        $laptop->cantidad = $request->cantidad ?? 'XXXX';
+        $laptop->condicion = $request->condicion ?? 'XXXX';
+        $laptop->observaciones = $request->observaciones ?? 'XXXX';
+        $laptop->pallet = $request->pallet ?? 'XXXX';
         $laptop->save();
 
         return redirect('/laptop/index/' . $serie)->with('success', 'Registro actualizado existosamente');

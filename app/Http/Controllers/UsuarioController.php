@@ -165,7 +165,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = User::where('name', $id);
+        $usuario = User::where('email', $id)->first();
 
         MovimientoUsuario::create([
             'movimiento' => 'Se ha eliminado el usuario ' . $usuario->name . ' con el correo ' . $usuario->email . ' en fecha de ' . date('d-M-Y H:i:s'),

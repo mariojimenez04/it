@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EmbarqueController;
 use App\Http\Controllers\InicioController;
@@ -115,7 +116,7 @@ Route::get('/users/{user:name}/edit', [UsuarioController::class, 'edit'])->name(
 Route::post('/users/{user:name}/edit', [UsuarioController::class, 'update'])->name('users.update');
 
 //Ruta para eliminar el usuario
-Route::delete('/usuario/{user:name}/delete', [UsuarioController::class, 'destroy'])->name('users.destroy');
+Route::delete('/usuario/{user:email}/delete', [UsuarioController::class, 'destroy'])->name('users.destroy');
 
 /* EMBARQUES */
 //Inicio
@@ -208,3 +209,8 @@ Route::post('/linea/delete', [LineaController::class, 'destroy'])->name('linea.d
 //Rutas para los codigos
 //Index
 Route::get('/linea/index', [LineaController::class, 'index'])->name('linea.index');
+
+
+/* Clientes */
+Route::get('/cliente/create', [ClienteController::class, 'create'])->name('cliente.create');
+Route::post('/cliente/create', [ClienteController::class, 'store'])->name('cliente.store');

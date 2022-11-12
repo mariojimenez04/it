@@ -9,6 +9,7 @@
     @endif
     <a href="{{ route('ram.index') }}" class="btn btn-dark">Ver lista de memoria Ram</a>
     <a href="{{ route('processor.index') }}" class="btn btn-dark">Ver procesadores</a>
+    <a href="{{ route('cliente.create') }}" class="btn btn-dark">Registrar vendedor</a>
 @endsection
 
 @section('titulo')
