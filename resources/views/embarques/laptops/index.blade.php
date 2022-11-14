@@ -101,45 +101,45 @@
                             @if(auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                             <td>
                                 @if ($detalle->entregado === 0)
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-{{ $detalle->id_detalle }}">No entregado</button>
-                                    <div class="modal fade" id="modal-{{ $detalle->id_detalle }}" aria-hidden="true">
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-general-{{ $detalle->id_detalle }}">No entregado</button>
+                                    <div class="modal fade" id="modal-general-{{ $detalle->id_detalle }}" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 
-            
-                                                    <div class="modal-header">
-                                                        <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
-                                                        <button class="btn-close" aria-label="close"></button>
-                                                    </div>
-            
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('laptop.venta', $detalle->id_detalle) }}" method="POST">
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <label for="cliente">Cliente</label>
-                                                                <select name="cliente" id="cliente" class="form-select">
-                                                                    <option value="" selected>--Seleccionar--</option>
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                                </div>
         
-                                                                    @foreach ($clientes as $cliente)
-                                                                        <option value="{{ $cliente->cliente }}">{{ $cliente->cliente }}</option>
-                                                                    @endforeach
-        
-                                                                </select>
-                                                            </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('laptop.venta', $detalle->id_detalle) }}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <label for="cliente">Cliente</label>
+                                                            <select name="cliente" id="cliente" class="form-select">
+                                                                <option value="" selected>--Seleccionar--</option>
+    
+                                                                @foreach ($clientes as $cliente)
+                                                                    <option value="{{ $cliente->cliente }}">{{ $cliente->cliente }}</option>
+                                                                @endforeach
+    
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <input type="submit" value="Guardar cambios" class="btn btn-success">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" value="Guardar cambios" class="btn btn-success">
                                                     </form>
-                                                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    </div>
+                                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 @else
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-dev-{{ $detalle->id_detalle }}">Entregado(Devolver)</button>
-                                    <div class="modal fade" id="modal-dev-{{ $detalle->id_detalle }}" aria-hidden="true">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-general-dev-{{ $detalle->id_detalle }}">Entregado(Devolver)</button>
+                                    <div class="modal fade" id="modal-general-dev-{{ $detalle->id_detalle }}" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 
@@ -188,7 +188,6 @@
                             </form>
                             @endif
                             
-        
                         </tr>
                     @endforeach
                 
@@ -409,35 +408,34 @@
                                     <div class="modal fade" id="modal-{{ $detalle->id_detalle }}" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                
             
-                                                    <div class="modal-header">
-                                                        <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
-                                                        <button class="btn-close" aria-label="close"></button>
-                                                    </div>
-            
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('laptop.venta', $detalle->id_detalle) }}" method="POST">
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <label for="cliente">Cliente</label>
-                                                                <select name="cliente" id="cliente" class="form-select">
-                                                                    <option value="" selected>--Seleccionar--</option>
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title text-center">Entregar {{ $detalle->id_detalle}}</h3>
+                                                    <button type="button" class="btn-close" aria-label="close"></button>
+                                                </div>
         
-                                                                    @foreach ($clientes as $cliente)
-                                                                        <option value="{{ $cliente->cliente }}">{{ $cliente->cliente }}</option>
-                                                                    @endforeach
-        
-                                                                </select>
-                                                            </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('laptop.venta', $detalle->id_detalle) }}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <label for="cliente">Cliente</label>
+                                                            <select name="cliente" id="cliente" class="form-select">
+                                                                <option value="" selected>--Seleccionar--</option>
+    
+                                                                @foreach ($clientes as $cliente)
+                                                                    <option value="{{ $cliente->cliente }}">{{ $cliente->cliente }}</option>
+                                                                @endforeach
+    
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <input type="submit" value="Guardar cambios" class="btn btn-success">
-                                                    </form>
-                                                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" value="Guardar cambios" class="btn btn-success">
+                                                </form>
+                                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
