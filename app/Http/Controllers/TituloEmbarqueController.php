@@ -72,8 +72,6 @@ class TituloEmbarqueController extends Controller
             return redirect()->route('embarque.index')->with('success', 'Registro creado exitosamente');
         }else if($request->descripcion === 'Productos'){
             return redirect()->route('embarque.productos.index')->with('success', 'Registro creado exitosamente');
-        }else {
-            return abort(400);
         }
     }
 
