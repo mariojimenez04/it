@@ -67,13 +67,13 @@ class TituloEmbarqueController extends Controller
             'id_emb' => $request->id_emb
         ]);
 
-        if ($request->descripcion === 'Laptop') {
+        if ($request->descripcion === 'Laptops') {
             # code...
             return redirect()->route('embarque.index')->with('success', 'Registro creado exitosamente');
         }else if($request->descripcion === 'Productos'){
             return redirect()->route('embarque.productos.index')->with('success', 'Registro creado exitosamente');
         }else {
-            return abort(400);
+            abort(403);
         }
     }
 

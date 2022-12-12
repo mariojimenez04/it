@@ -2,11 +2,9 @@
 
 @section('botones')
     <a href="{{ route('embarque.index') }}" class="btn btn-dark">Volver</a>
-    @if ( auth()->user()->usuario === 1)
-        
-        <a href="{{ route('laptop.create', $id) }}" class="btn btn-dark">Registrar laptop</a>
-
-    @endif
+        @if ( auth()->user()->usuario === 1)
+            <a href="{{ route('laptop.create', $id) }}" class="btn btn-dark">Registrar laptop</a>
+        @endif
     @if(auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
         <a href="{{ route('laptop.import', $id) }}" class="btn btn-primary">Importar archivo Excel Laptops</a>
         <a href="{{ route('serie.create', $id) }}" class="btn btn-dark">Importar Excel No. series</a>
@@ -55,17 +53,19 @@
                     <th scope="col">#</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Numero serie</th>
-                    <th scope="col">Observaciones</th>
+                    <!-- <th scope="col">Observaciones</th> -->
                     <th scope="col">Diagnostico</th>
                     <th scope="col">Acciones IT</th>
-                    <th scope="col">Procesador</th>
-                    <th scope="col">Tamaño</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Capacidad</th>
-                    <th scope="col">RAM</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Condicion</th>
-        
+                    <!-- <th scope="col">Procesador</th> -->
+                    <!-- <th scope="col">Tamaño</th> -->
+                    <!-- <th scope="col">Color</th> -->
+                    <!-- <th scope="col">Capacidad</th> -->
+                    <!-- <th scope="col">RAM</th> -->
+                    <!-- <th scope="col">Cantidad</th> -->
+                    <!-- <th scope="col">Condicion</th> -->
+
+                    <th scope="col">Caracteristicas</th>
+
                     @if(auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                         <th scope="col">Status</th>
                     @endif
@@ -87,16 +87,69 @@
                             <th>{{ $detalle->id_detalle }}</th>
                             <th>{{ $detalle->modelo }}</th>
                             <td>{{ $detalle->numero_serie }}</td>
-                            <td>{{ $detalle->observaciones }}</td>
+                            <!-- <td>{{ $detalle->observaciones }}</td> -->
                             <td>{{ $detalle->diagnostico }}</td>
                             <td>{{ $detalle->acciones }}</td>
-                            <td>{{ $detalle->procesador }}</td>
-                            <td>{{ $detalle->tamano }}</td>
-                            <td>{{ $detalle->color }}</td>
-                            <td>{{ $detalle->capacidad }}</td>
-                            <td>{{ $detalle->ram }}</td>
-                            <td>{{ $detalle->cantidad }}</td>
-                            <td>{{ $detalle->condicion }}</td>
+                            <!-- <td>{{ $detalle->procesador }}</td> -->
+                            <!-- <td>{{ $detalle->tamano }}</td> -->
+                            <!-- <td>{{ $detalle->color }}</td> -->
+                            <!-- <td>{{ $detalle->capacidad }}</td> -->
+                            <!-- <td>{{ $detalle->ram }}</td> -->
+                            <!-- <td>{{ $detalle->cantidad }}</td> -->
+                            <!-- <td>{{ $detalle->condicion }}</td> -->
+
+                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#md-c-{{ $detalle->id_detalle }}">Ver Caracteristicas</button>
+                            <div class="modal fade" tabindex="-1" aria-labelledby="md-c-{{ $detalle->id_detalle }}" id="md-c-{{ $detalle->id_detalle }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Caracteristicas ID - {{ $detalle->id_detalle }}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="row gap-3">
+                                        <div class="mb-3 col-sm-4">
+                                            <label for="procesador">Procesador</label>
+                                            <input type="text" class="form-control" disabled value="{{ $detalle->procesador }}">
+                                        </div>
+                                        <div class="mb-3 col-sm-2">
+                                            <label for="procesador">Tamaño</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->tamano }}"'>
+                                        </div>
+                                        <div class="mb-3 col-sm-3">
+                                            <label for="procesador">Color</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->color }}"'>
+                                        </div>
+                                        <div class="mb-3 col-sm-3">
+                                            <label for="procesador">Capacidad</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->capacidad }}"'>
+                                        </div>
+                                        <div class="mb-3 col-sm-3">
+                                            <label for="procesador">RAM</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->ram }}"'>
+                                        </div>
+                                        <div class="mb-3 col-sm-3">
+                                            <label for="procesador">Cantidad</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->cantidad }}"'>
+                                        </div>
+                                        <div class="mb-3 col-sm-3">
+                                            <label for="procesador">Condicion</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->condicion }}"'>
+                                        </div>
+                                        <div class="mb-3 col-sm-5">
+                                            <label for="procesador">Observaciones</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->observaciones }}'>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+
+                            </div>
+                            </td>
         
                             @if(auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                             <td>
