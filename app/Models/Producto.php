@@ -23,6 +23,7 @@ class Producto extends Model
         'id_titulo',
         'total_entregado',
         'cliente',
-        'por_entregar'
+        'por_entregar',
+        'numero_serie'
     ];
 }

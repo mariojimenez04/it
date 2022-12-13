@@ -83,7 +83,8 @@ class ProductoController extends Controller
             'comentarios' => $request->comentarios ?? 'XXX',
             'modificado_por' => auth()->user()->name,
             'id_titulo' => $id,
-            'total_entregado' => 0
+            'total_entregado' => 0,
+            'numero_serie' => $request->numero_serie ?? 'XXX'
         ]);
 
         return redirect('/productos/index/' . $id)->with('success', 'Registro creado exitosamente');

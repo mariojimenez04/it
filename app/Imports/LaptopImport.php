@@ -22,7 +22,7 @@ class LaptopImport implements ToModel, WithHeadingRow
     {
         return new Laptop_detalle([
             //Retorna los valores para ingresar en la base de datos
-            'id_detalle' => $row['id_detalle'] ?? 'xxxxx',
+            'id_detalle' => $row['id_detalle'] ?? '',
             'modelo' => $row['modelo'] ?? 'xxxxx',
             'numero_serie' => $row['numero_serie'] ?? 'xxxxx',
             'observaciones' => $row['observaciones'] ?? 'xxxxx',
@@ -34,8 +34,8 @@ class LaptopImport implements ToModel, WithHeadingRow
             'capacidad' => $row['capacidad'] ?? 'xxxxx',
             'ram' => $row['ram'] ?? 'xxxxx',
             'cantidad' => $row['cantidad'] ?? 'xxxxx',
-            'condicion' => $row['status'] ?? 'xxxxx',
-            'entregado' => $row['entregado'] ?? '0',
+            'condicion' => $row['condicion'] ?? 'xxxxx',
+            'entregado' => $row['status'] ?? '0',
             'modificado_por' => auth()->user()->name,
             'id_titulo' => $row['id_titulo'],
             'pallet' => $row['pallet']  ?? 'xxxxx',
