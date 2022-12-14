@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Isla;
 use App\Models\Linea;
+use App\Models\MovimientoProducto;
 use App\Models\Producto;
 use App\Models\Titulo_embarque;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ class ProductoController extends Controller
         $id_titulo = Titulo_embarque::where('id_emb', $id)->first();
         $lineas = Linea::all();
         $islas = Isla::all();
+
         //Retornar la vista para registrar productos
         return view('embarques.productos.create',[
             'id_titulo' => $id_titulo,
@@ -70,6 +72,13 @@ class ProductoController extends Controller
         //     'color' => 'required',
         //     'cantidad' => 'required',
         // ]);
+        
+        MovimientoProducto::create([
+            'movimiento' => 'El usuario ' . auth()->user()->name . ' registro el producto ' . $request->producto . ' con numero de serie ' . $request->numero_serie . ' el día ' . date('d-M-Y H:i:s'),
+            'usuario' => auth()->user()->name,
+            'equipo' => gethostname(),
+            'direccion_ip' => $request->ip()
+        ]);
 
         Producto::create([
             'linea' => $request->linea ?? 'XXX',
@@ -112,13 +121,15 @@ class ProductoController extends Controller
         if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1) {
             # code...
                 $producto = Producto::where('id', $id)->first();
-
+                $lineas = Linea::all();
             if(!$producto){
                 abort(404);
             }
+            // dd($lineas);
             //
             return view('embarques.productos.edit', [
                 'producto' => $producto,
+                'lineas' => $lineas
             ]);
         }else {
             abort(404);
@@ -158,6 +169,7 @@ class ProductoController extends Controller
         $producto->cantidad = $request->cantidad;
         $producto->comentarios = $request->comentarios;
         $producto->modificado_por = auth()->user()->name;
+        $producto->numero_serie = $request->numero_serie;
         $producto->save();
 
         return redirect('/productos/index/' . $enlace)->with('success', 'Registro creado exitosamente');

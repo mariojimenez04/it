@@ -18,6 +18,8 @@ class InicioController extends Controller
      */
     public function index()
     {
+
+        // dd($_SERVER);
         $embarques = Titulo_embarque::all();
 
         //Retornar la vista para el index

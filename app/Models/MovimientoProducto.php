@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class MovimientoProducto extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'movimiento',
+        'usuario',
+        'equipo',
+        'direccion_ip',
+    ];
 }
