@@ -50,7 +50,7 @@ class ProductoController extends Controller
             'id_titulo' => $id_titulo,
             'lineas' => $lineas,
             'islas' => $islas,
-        
+
         ]);
     }
 
@@ -72,7 +72,7 @@ class ProductoController extends Controller
         //     'color' => 'required',
         //     'cantidad' => 'required',
         // ]);
-        
+
         MovimientoProducto::create([
             'movimiento' => 'El usuario ' . auth()->user()->name . ' registro el producto ' . $request->producto . ' con numero de serie ' . $request->numero_serie . ' el día ' . date('d-M-Y H:i:s'),
             'usuario' => auth()->user()->name,
@@ -134,7 +134,7 @@ class ProductoController extends Controller
         }else {
             abort(404);
         }
-        
+
     }
 
     /**
@@ -160,6 +160,13 @@ class ProductoController extends Controller
             'cantidad' => 'required',
         ]);
 
+        MovimientoProducto::create([
+            'movimiento' => 'El usuario ' . auth()->user()->name . ' actualizo el producto ' . $request->producto . ' con numero de serie ' . $request->numero_serie . ' el día ' . date('d-M-Y H:i:s'),
+            'usuario' => auth()->user()->name,
+            'equipo' => gethostname(),
+            'direccion_ip' => $request->ip()
+        ]);
+
         $producto->linea = $request->linea;
         $producto->isla = $request->isla;
         $producto->producto = $request->producto;
@@ -181,7 +188,7 @@ class ProductoController extends Controller
 
         $this->validate($request,[
             'cliente' => 'required',
-            'total_entregado', 
+            'total_entregado',
         ]);
 
         $total = $producto->cantidad - $request->por_entregar;

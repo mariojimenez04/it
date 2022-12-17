@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 
 class LaptopImport implements ToModel, WithHeadingRow
 {
-   
+
     use Importable;
     /**
     * @param array $row
@@ -20,6 +20,7 @@ class LaptopImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+
         return new Laptop_detalle([
             //Retorna los valores para ingresar en la base de datos
             'id_detalle' => $row['id_detalle'] ?? '',
@@ -34,8 +35,8 @@ class LaptopImport implements ToModel, WithHeadingRow
             'capacidad' => $row['capacidad'] ?? 'xxxxx',
             'ram' => $row['ram'] ?? 'xxxxx',
             'cantidad' => $row['cantidad'] ?? 'xxxxx',
-            'condicion' => $row['condicion'] ?? 'xxxxx',
-            'entregado' => $row['status'] ?? '0',
+            'condicion' => $row['status'] ?? 'xxxxx',
+            'entregado' => $row['entregado'] ?? '0',
             'modificado_por' => auth()->user()->name,
             'id_titulo' => $row['id_titulo'],
             'pallet' => $row['pallet']  ?? 'xxxxx',
