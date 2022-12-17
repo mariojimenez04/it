@@ -79,6 +79,16 @@
 
         <div class="col-md-4">
 
+            <label for="numero_serie" class="form-label">Numero de serie</label>
+            <input type="text" id="numero_serie" name="numero_serie" class="form-control form-control-sm @error('numero_serie') is-invalid @enderror" value="{{ old('numero_serie') }}">
+
+            @error('numero_serie')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="col-md-4">
+
             <label for="color" class="form-label">Color</label>
             <input type="text" id="color" name="color" class="form-control form-control-sm @error('color') is-invalid @enderror" value="{{ old('color') }}">
 

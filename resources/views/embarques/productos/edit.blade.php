@@ -16,11 +16,26 @@
         <div class="col-sm-4">
 
             <label for="linea" class="form-label">Linea</label>
-            <input type="text" id="linea" name="linea" class="form-control form-control-sm @error('linea') is-invalid @enderror" value="{{ $producto->linea }}">
+
+            <select name="linea" id="linea" class="form-select">
+
+                <option value="" selected>--Seleccionar--</option>
+
+                @foreach ($lineas as $linea)
+                    <option
+                    value="{{ $linea->linea }}"
+                    {{-- @php
+                        $producto->linea === $linea->linea ? 'selected' : ''
+                    @endphp --}}
+                    >{{ $linea->linea }}</option>
+                @endforeach
+
+            </select>
 
             @error('linea')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
+
         </div>
 
         <div class="col-md-4">

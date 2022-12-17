@@ -70,8 +70,6 @@
                         <th scope="col">Status</th>
                     @endif
         
-                    <th scope="col">Pallet</th>
-        
                     @if(auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                         <th scope="col">Modificado Por</th>
                         <th scope="col">Ultima modificacion</th>
@@ -114,31 +112,35 @@
                                         </div>
                                         <div class="mb-3 col-sm-2">
                                             <label for="procesador">Tamaño</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->tamano }}"'>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->tamano }}'>
                                         </div>
                                         <div class="mb-3 col-sm-3">
                                             <label for="procesador">Color</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->color }}"'>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->color }}'>
                                         </div>
                                         <div class="mb-3 col-sm-3">
                                             <label for="procesador">Capacidad</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->capacidad }}"'>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->capacidad }}'>
                                         </div>
                                         <div class="mb-3 col-sm-3">
                                             <label for="procesador">RAM</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->ram }}"'>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->ram }}'>
                                         </div>
                                         <div class="mb-3 col-sm-3">
                                             <label for="procesador">Cantidad</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->cantidad }}"'>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->cantidad }}'>
                                         </div>
                                         <div class="mb-3 col-sm-3">
                                             <label for="procesador">Condicion</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->condicion }}"'>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->condicion }}'>
                                         </div>
                                         <div class="mb-3 col-sm-5">
                                             <label for="procesador">Observaciones</label>
-                                            <input type="text" class="form-control" disabled value='{{ $detalle->observaciones }}'>
+                                            <textarea class="form-control" disabled>{{ $detalle->observaciones }}</textarea>
+                                        </div>
+                                        <div class="mb-3 col-sm-5">
+                                            <label for="procesador">Pallet</label>
+                                            <input type="text" class="form-control" disabled value='{{ $detalle->pallet }}'>
                                         </div>
                                     </form>
                                 </div>
@@ -227,7 +229,6 @@
                             </td>
                             @endif
         
-                            <td>{{ $detalle->pallet }}</td>
                             @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1)
                             <td>{{ $detalle->modificado_por }}</td>
                             <td>{{ $detalle->updated_at }}</td>
