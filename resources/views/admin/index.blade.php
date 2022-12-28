@@ -5,7 +5,7 @@
     @if (auth()->user()->admin === 1)
 
         <a href="{{ route('users.index') }}" class="btn btn-primary">Ver usuarios</a>
-        
+
     @endif
     <a href="{{ route('ram.index') }}" class="btn btn-dark">Ver lista de memoria Ram</a>
     <a href="{{ route('processor.index') }}" class="btn btn-dark">Ver procesadores</a>
@@ -13,23 +13,69 @@
 @endsection
 
 @section('titulo')
-    Administracion
+    Administracion - catalogos
 @endsection
 
 @section('contenido')
 
-<div class="table-responsive container">
+    <main class="container">
+        <div class="row gap-3">
+
+            <div class="col-sm-3 mb-3">
+                <div class="card p-4">
+                    <img class="card-img-top img-fluid" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">RAM</h3>
+                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card p-4">
+                    <img class="card-img-top" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">RAM</h3>
+                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card p-4">
+                    <img class="card-img-top" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">RAM</h3>
+                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card p-4">
+                    <img class="card-img-top" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">RAM</h3>
+                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+{{-- <div class="table-responsive container">
     <h3 class="text-center my-5">Lista de memorias RAM</h3>
     <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Capacidad</th>
-            <th scope="col">Registrado por</th>    
+            <th scope="col">Registrado por</th>
         </tr>
         </thead>
         <tbody class="table-group-divider">
-    
+
             @foreach ($rams as $ram)
                 <tr>
                     <td>{{ $ram->id }}</td>
@@ -37,11 +83,11 @@
                     <td scope="row">{{ $ram->registrado_por }}</td>
                 </tr>
             @endforeach
-        
+
         </tbody>
     </table>
 <a href="{{ route('ram.index') }}" class="btn btn-success mb-4">Ver mas</a>
-</div>  
+</div>
 
 <div class="linea"></div>
 
@@ -59,8 +105,8 @@
         </tr>
         </thead>
         <tbody class="table-group-divider">
-    
-            {{-- @foreach ($series as $serie)
+
+            @foreach ($series as $serie)
                 <tr>
                     <th>{{ $serie->id }}</th>
                     <th scope="row">{{ $serie->serie }}</th>
@@ -76,12 +122,12 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach --}}
-        
+            @endforeach
+
         </tbody>
     </table>
 
-</div>   
+</div>
 
 <div class="linea"></div>
 
@@ -99,8 +145,8 @@
         </tr>
         </thead>
         <tbody class="table-group-divider">
-    
-            {{-- @foreach ($series as $serie)
+
+            @foreach ($series as $serie)
                 <tr>
                     <th>{{ $serie->id }}</th>
                     <th scope="row">{{ $serie->serie }}</th>
@@ -116,12 +162,12 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach --}}
-        
+            @endforeach
+
         </tbody>
     </table>
 
-</div>   
+</div>
 
 <div class="linea"></div>
 
@@ -139,8 +185,8 @@
         </tr>
         </thead>
         <tbody class="table-group-divider">
-    
-            {{-- @foreach ($series as $serie)
+
+            @foreach ($series as $serie)
                 <tr>
                     <th>{{ $serie->id }}</th>
                     <th scope="row">{{ $serie->serie }}</th>
@@ -156,11 +202,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach --}}
-        
+            @endforeach
+
         </tbody>
     </table>
 
-</div>   
+</div> --}}
 
 @endsection
