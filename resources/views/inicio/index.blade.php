@@ -1,41 +1,45 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Panel de administracion
+    Panel de inicio
 @endsection
 
 @section('contenido')
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Embarque</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Modificado por</th>
-            <th scope="col">Acciones</th>
-        </tr>
-        </thead>
-        <tbody class="table-group-divider">
-    
-            @foreach ($embarques as $embarque)
-                <tr>
-                    <th>{{ $embarque->id }}</th>
-                    <th scope="row">{{ $embarque->titulo }}</th>
-                    <td>{{ $embarque->descripcion }}</td>
-                    <td>{{ $embarque->modificado_por }}</td>
-                    <td>
-                        @if ($embarque->descripcion === 'Laptops')
-                            <a href="{{ route('laptop.index', $embarque->id_emb) }}" class="btn btn-warning">Ver Embarque</a>
-                            @elseif ($embarque->descripcion === 'Productos')
-                            <a href="{{ route('productos.index', $embarque->id_emb) }}" class="btn btn-warning">Ver Embarque</a>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        
-        </tbody>
-    </table>
-</div>
+
+<main class="container">
+    <div class="row align-items-center gap-3">
+
+        <div class="col-md-3 p-0  shadow-lg">
+            <div class="card p-4">
+                <img src="{{ asset('iconos/journals.svg') }}">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Administracion</h5>
+                    <a href="{{ route('admin.index') }}" class="btn btn-primary">Ver mas</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 p-0  shadow-lg">
+            <div class="card p-4">
+                <img src="{{ asset('iconos/laptop.svg') }}">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Embarque Laptops</h4>
+                    <a href="{{ route('embarque.index') }}" class="btn btn-primary">Ver mas</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 p-0  shadow-lg">
+            <div class="card p-4">
+                <img src="{{ asset('iconos/box-seam.svg') }}">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Embarque productos</h4>
+                    <a href="{{ route('embarque.productos.index') }}" class="btn btn-primary">Ver mas</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
 
 @endsection

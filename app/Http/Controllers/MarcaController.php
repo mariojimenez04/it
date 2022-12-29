@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class MarcaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $resultados = Cliente::all();
-        //Retornar la vista
-        return view('admin.clientes.index',[
-            'resultados' => $resultados
-        ]);
+        //
     }
 
     /**
@@ -29,7 +24,6 @@ class ClienteController extends Controller
     public function create()
     {
         //
-        return view('admin.clientes.create');
     }
 
     /**
@@ -41,18 +35,6 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,[
-            'cliente' => 'required'
-        ]);
-
-        Cliente::create([
-            'cliente' => $request->cliente,
-            'saldo' => 0,
-            'activo' => 1,
-            'registrado_por' => auth()->user()->name
-        ]);
-
-        return redirect()->route('cliente.index')->with('success', 'Registro creado exitosamente');
     }
 
     /**
@@ -97,11 +79,6 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //Retornar mediante $id el valor y asignarlo al metodo where que sirve para buscar mediante el valor asignado a la variable
-        $resultado = Cliente::where('cliente', $id);
-
-        $resultado->delete();
-
-        return redirect()->route('cliente.index')->with('success', 'Registro eliminado exitosamente');
+        //
     }
 }

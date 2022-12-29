@@ -4,12 +4,7 @@
     <a href="{{ route('index') }}" class="btn btn-dark">Volver</a>
     @if (auth()->user()->admin === 1)
 
-        <a href="{{ route('users.index') }}" class="btn btn-primary">Ver usuarios</a>
-
     @endif
-    <a href="{{ route('ram.index') }}" class="btn btn-dark">Ver lista de memoria Ram</a>
-    <a href="{{ route('processor.index') }}" class="btn btn-dark">Ver procesadores</a>
-    <a href="{{ route('cliente.create') }}" class="btn btn-dark">Registrar vendedor</a>
 @endsection
 
 @section('titulo')
@@ -19,11 +14,11 @@
 @section('contenido')
 
     <main class="container">
-        <div class="row gap-3">
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 gap-3">
 
-            <div class="col-sm-3 mb-3">
+            <div class="col p-0 mb-3 shadow-lg">
                 <div class="card p-4">
-                    <img class="card-img-top img-fluid" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <img src="{{ asset('iconos/memory.svg') }}">
                     <div class="card-body">
                         <h3 class="card-title text-center">RAM</h3>
                         <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
@@ -31,32 +26,46 @@
                 </div>
             </div>
 
-            <div class="col-md-3 mb-3">
-                <div class="card p-4">
-                    <img class="card-img-top" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+            @if (auth()->user()->admin === 1)
+
+                <div class="col mb-3 p-0 shadow-lg">
+                    <div class="card p-4">
+                        <img class="card-img-top" src="{{ asset('iconos/person-circle.svg') }}" alt="Icono memoria ram">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">Usuarios</h3>
+                            <a href="{{ route('users.index') }}" class="btn btn-primary">Ver mas</a>
+                        </div>
+                    </div>
+                </div>
+
+            @endif
+
+            <div class="col mb-3 p-0 shadow-lg">
+                <div class="card p-2 p-md-4">
+                    <img class="card-img-top" src="{{ asset('iconos/clipboard-check.svg') }}" alt="Icono memoria ram">
                     <div class="card-body">
-                        <h3 class="card-title text-center">RAM</h3>
-                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                        <h3 class="card-title text-center">Clientes</h3>
+                        <a href="{{ route('cliente.index') }}" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 mb-3">
+            <div class="col mb-3 p-0 shadow-lg">
                 <div class="card p-4">
-                    <img class="card-img-top" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <img class="card-img-top" src="{{ asset('iconos/palette.svg') }}" alt="Icono memoria ram">
                     <div class="card-body">
-                        <h3 class="card-title text-center">RAM</h3>
-                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                        <h3 class="card-title text-center">Colores</h3>
+                        <a href="{{ route('color.index') }}" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 mb-3">
+            <div class="col mb-3 p-0 shadow-lg">
                 <div class="card p-4">
-                    <img class="card-img-top" src="{{ asset('iconos/memory.svg') }}" alt="Icono memoria ram">
+                    <img class="card-img-top" src="{{ asset('iconos/badge-tm-fill.svg') }}" alt="Icono memoria ram">
                     <div class="card-body">
-                        <h3 class="card-title text-center">RAM</h3>
-                        <a href="{{ route('ram.index') }}" class="btn btn-primary">Ver mas</a>
+                        <h3 class="card-title text-center">Marcas</h3>
+                        <a href="{{ route('marca.index') }}" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>

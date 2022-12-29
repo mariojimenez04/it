@@ -8,6 +8,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\LaptopDetalleController;
 use App\Http\Controllers\LineaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\MemoriaController;
 use App\Http\Controllers\ProcesadoreController;
 use App\Http\Controllers\ProductoController;
@@ -212,5 +213,24 @@ Route::get('/linea/index', [LineaController::class, 'index'])->name('linea.index
 
 
 /* Clientes */
+Route::get('/cliente/index', [ClienteController::class, 'index'])->name('cliente.index');
+
 Route::get('/cliente/create', [ClienteController::class, 'create'])->name('cliente.create');
-Route::post('/cliente/create', [ClienteController::class, 'store'])->name('cliente.store');
+Route::post('/cliente/store', [ClienteController::class, 'store'])->name('cliente.store');
+
+Route::post('/cliente/edit', [ClienteController::class, 'edit'])->name('cliente.edit');
+Route::post('/cliente/update', [ClienteController::class, 'update'])->name('cliente.update');
+
+Route::post('/cliente/delete/{clientes:cliente}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+
+/* Marcas */
+Route::get('/marca/index', [MarcaController::class, 'index'])->name('marca.index');
+
+Route::get('/marca/create', [MarcaController::class, 'create'])->name('marca.create');
+Route::post('/marca/store', [MarcaController::class, 'store'])->name('marca.store');
+
+Route::get('/marca/edit/{marcas:marca}', [MarcaController::class, 'edit'])->name('marca.edit');
+Route::post('/marca/update/{marcas:marca}', [MarcaController::class, 'update'])->name('marca.update');
+
+Route::post('/marca/delete/{marcas:marca}', [MarcaController::class, 'destroy'])->name('marca.destroy');
+
