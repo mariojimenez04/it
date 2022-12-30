@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marca;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +18,12 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        //Asignar valores a la variable $resultado
+        $resultados = Marca::all();
+        //Retornar la vista
+        return view('admin.marcas.index', [
+            'resultados' => $resultados
+        ]);
     }
 
     /**

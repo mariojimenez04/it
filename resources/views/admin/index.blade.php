@@ -52,20 +52,20 @@
 
             <div class="col mb-3 p-0 shadow-lg">
                 <div class="card p-4">
-                    <img class="card-img-top" src="{{ asset('iconos/palette.svg') }}" alt="Icono memoria ram">
+                    <img class="card-img-top" src="{{ asset('iconos/badge-tm-fill.svg') }}" alt="Icono memoria ram">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Colores</h3>
-                        <a href="{{ route('color.index') }}" class="btn btn-primary">Ver mas</a>
+                        <h3 class="card-title text-center">Marcas</h3>
+                        <a href="{{ route('marca.index') }}" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
 
             <div class="col mb-3 p-0 shadow-lg">
                 <div class="card p-4">
-                    <img class="card-img-top" src="{{ asset('iconos/badge-tm-fill.svg') }}" alt="Icono memoria ram">
+                    <img class="card-img-top" src="{{ asset('iconos/palette.svg') }}" alt="Icono memoria ram">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Marcas</h3>
-                        <a href="{{ route('marca.index') }}" class="btn btn-primary">Ver mas</a>
+                        <h3 class="card-title text-center">Colores</h3>
+                        <a href="{{ route('color.index') }}" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
