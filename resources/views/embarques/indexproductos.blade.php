@@ -42,7 +42,7 @@
                         <td>{{ $embarque->modificado_por }}</td>
                     @endif
                     <td class="d-flex gap-3">
-                        @if (auth()->user()->admin === 1)
+                        @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 )
                             <form action="{{ route('embarque.destroy', $embarque) }}" method="POST">
                                 @csrf
                                 @method('delete')
