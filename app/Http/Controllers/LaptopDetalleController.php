@@ -212,6 +212,7 @@ class LaptopDetalleController extends Controller
         ]);
 
         $laptop->modelo = $request->modelo ?? 'XXXX';
+        $laptop->numero_serie = $request->numero_serie ?? 'XXXX';
         $laptop->diagnostico = $request->diagnostico ?? 'XXXX';
         $laptop->acciones = $request->acciones ?? 'XXXX';
         $laptop->procesador = $request->procesador ?? 'XXXX';

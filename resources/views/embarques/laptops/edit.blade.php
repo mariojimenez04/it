@@ -36,7 +36,13 @@
         <div class="col-md-4">
 
             <label for="numero_serie" class="form-label">Numero de serie</label>
-            <input type="text" id="numero_serie" name="numero_serie" class="form-control form-control-sm @error('numero_serie') is-invalid @enderror" value="{{ $laptop->numero_serie }}" disabled>
+            <input type="text" id="numero_serie" name="numero_serie" class="form-control form-control-sm @error('numero_serie') is-invalid @enderror" value="{{ $laptop->numero_serie }}"
+            @if (auth()->user()->admin === 1 || auth()->user()->supervisor === 1 )
+
+            @else
+            disabled
+            @endif
+            >
 
             @error('numero_serie')
                 <p class="invalid-feedback">{{ $message }}</p>
